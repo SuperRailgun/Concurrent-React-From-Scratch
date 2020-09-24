@@ -25,6 +25,9 @@ export function render(element, container) {
   // eslint-disable-next-line
   element.props.children?.forEach((child) => render(child, dom));
   // 迭代!                               👆
+
+  // 现在 render 是出来一个就加入到（commit）到 dom 一个
+  // 并不符合 react 的 rander then commit
   container.appendChild(dom);
 }
 
