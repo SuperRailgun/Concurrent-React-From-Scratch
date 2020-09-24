@@ -2,8 +2,17 @@ import "./styles.css";
 import { render, createElement } from "./utils";
 
 const React = { createElement };
-// React.createElement("h1", null, "hello");
-const element = <h1>hello</h1>;
+function App() {
+  return (
+    <div>
+      <h1>hello</h1>
+      <ul>
+        <li>foo</li>
+        <li>bar</li>
+      </ul>
+    </div>
+  );
+}
 const container = document.getElementById("root");
 
-render(element, container);
+render(<App />, container);
