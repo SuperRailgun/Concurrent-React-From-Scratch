@@ -18,21 +18,25 @@ function App() {
 }
 const container = document.getElementById("root");
 
-render(<App />, container);
+creatRoot(container).render(<App />);
 
-function render(el, _container) {
-  wipRoot = {
-    dom: _container,
-    props: {
-      children: [el]
+function creatRoot(_container) {
+  return {
+    render(el) {
+      wipRoot = {
+        dom: _container,
+        props: {
+          children: [el]
+        }
+      };
+
+      nextUnitOfWork = wipRoot;
+
+      while (nextUnitOfWork) {
+        nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
+      }
+
+      commitWork(wipRoot.child);
     }
   };
-
-  nextUnitOfWork = wipRoot;
-
-  while (nextUnitOfWork) {
-    nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
-  }
-
-  commitWork(wipRoot.child);
 }
